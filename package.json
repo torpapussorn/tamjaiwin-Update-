@@ -1,0 +1,89 @@
+{
+  "name": "hackslot123-com-web",
+  "niceName": "TAMJAIWIN",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "lint": "eslint ./**/*.{js,jsx,ts,tsx} --fix",
+    "prebuild": "rimraf dist && rimraf .next",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "build:docker": "docker build -t hellfactory777/hackslot123-com-web .",
+    "push:docker": "docker push hellfactory777/hackslot123-com-web",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start:docker": "docker run -d -p 3000:3000 --env-file .env -e NODE_ENV=production --name hackslot123-com-web hellfactory777/hackslot123-com-web",
+    "log:docker": "docker logs -f hackslot123-com-web",
+    "stop:docker": "docker rm -f hackslot123-com-web",
+    "remove:docker": "docker rmi hellfactory777/hackslot123-com-web",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public",
+    "prerelease:production": "npm run build",
+    "release:production": "release-it --only-version"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@types/lodash": "^4.14.182",
+    "axios": "^0.27.2",
+    "chalk": "^4.1.2",
+    "dayjs": "^1.11.3",
+    "dotenv": "^10.0.0",
+    "fastify": "3.17.0",
+    "fastify-http-proxy": "5.0.0",
+    "lodash": "^4.17.21",
+    "next": "12",
+    "nookies": "^2.5.2",
+    "nprogress": "^0.2.0",
+    "react-indiana-drag-scroll": "^2.1.0",
+    "recoil": "^0.3.1",
+    "sitemap": "^7.0.0",
+    "sweetalert2": "^11.4.19",
+    "swr": "^1.3.0",
+    "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.7",
+    "autoprefixer": "^10.3.4",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.28.0",
+    "eslint-config-next": "11.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.7",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "release-it": "^14.11.5",
+    "rimraf": "^3.0.2",
+    "sass": "^1.37.5",
+    "tailwindcss": "^2.2.9",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.7.4"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "server"
+    ],
+    "exec": "cls && ts-node --project tsconfig.server.json server/index.ts",
+    "ext": "js ts"
+  },
+  "release-it": {
+    "hooks": {
+      "before:release": "git pull",
+      "after:git:release": "git checkout -B main && git pull origin develop && git push -u origin main && git checkout -B develop && git push"
+    },
+    "git": {
+      "tagName": "release-prod-${version}",
+      "requireBranch": "develop"
+    },
+    "npm": {
+      "publish": false
+    }
+  }
+}

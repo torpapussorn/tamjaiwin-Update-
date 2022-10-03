@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'nprogress.scss';
+
+html,
+body {
+  @apply min-h-full;
+}
+
+body {
+  @apply font-poppins;
+  @apply text-md;
+  font-family: 'Kanit', sans-serif;
+  background-color: #090919;
+}
+
+.grid-cols3 {
+  display: grid;
+  grid-template-columns: 80px 180px 67px;
+}
+.grid-cols2 {
+  display: grid;
+  grid-template-columns: 287px 40px;
+}
+.grid-cols2-detail {
+  display: grid;
+  grid-template-columns: 260px 67px;
+}
+
+input:checked~.check_mark {
+  background-color: #940CFF;
+}
+input:checked~.check_mark:after {
+  display: block;
+}
+.check_mark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid #F8F7FB;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  content: "";
+  position:absolute;
+}
+
+.block_checkbox {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  color: #979a9c;
+  cursor: pointer;
+  user-select: none;
+}
+
+.block_checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.check_mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 4px;
+  height: 20px;
+  width: 20px;
+  background-color: #F8F7FB;
+  border-radius: 5px;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 140px;
+  height: 160px;
+  top: 62px;
+  right: 0;
+  border-radius: 10px;
+}
+
+
+@media (min-width: 765px) {
+  .grid-cols3 {
+    display: grid;
+    grid-template-columns: 100px 250px 74px;
+  }
+}
+@media (min-width: 765px) {
+  .grid-cols2 {
+    display: grid;
+    grid-template-columns: 380px 45px;
+  }
+}
+@media (min-width: 765px) {
+  .grid-cols2-detail {
+    display: grid;
+    grid-template-columns: 342px 85px;
+  }
+}
+
+
+
+
+
+
+
+
